@@ -180,6 +180,34 @@ public class ChatEndpoint {
                 }
             }
             break;
+            case VIEW_ALL_GROUPS: {
+                String groups = Groups.INSTANCE.groups
+                        .stream()
+                        .map(Group::getName)
+                        .reduce((s, s2) -> s + ", " + s2)
+                        .orElse("");
+
+                Message allGroupsMessage = new Message();
+                allGroupsMessage.setContent(groups);
+                allGroupsMessage.setType(MessageType.VIEW_ALL_GROUPS);
+
+                this.sendMessage(allGroupsMessage);
+            }
+            break;
+            case VIEW_ALL_USERS: {
+                String users = Users.INSTANCE.users
+                        .stream()
+                        .map(User::getName)
+                        .reduce((s, s2) -> s + ", " + s2)
+                        .get();
+
+                Message allUsersMessage = new Message();
+                allUsersMessage.setContent(users);
+                allUsersMessage.setType(MessageType.VIEW_ALL_USERS);
+                /* TODO: Return "Mihai, Ioana, Alina, ..."*/
+                this.sendMessage(allUsersMessage);
+            }
+            break;
         }
     }
 

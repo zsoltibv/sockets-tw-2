@@ -7,91 +7,139 @@
 </head>
 <body>
 
-<div class="container" style="margin-top: 10px;">
+<nav class="navbar navbar-light bg-light px-4">
+    <a class="navbar-brand" href="#">Chat App</a>
+    <div class="ml-auto">
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+            Add new group
+        </button>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#groupModal">
+            Group Actions
+        </button>
+    </div>
+</nav>
 
-    <div class="row">
-        <div class="col-md-4">
-            <div class="container bg-light p-3">
-                <p>Create a new group</p>
-                <div class="input-group mb-3">
-                    <input id="groupName" type="text" class="form-control" placeholder="Group Name"
-                           aria-label="Enter group name"
-                           aria-describedby="button-addon2">
-                    <button class="btn btn-primary" type="button" onclick="createGroup();">Create Group</button>
-                </div>
-
-                <p>Group Actions</p>
-                <div class="input-group mb-3">
-                    <label for="userDropdown" class="input-group-text">Select User:</label>
-                    <select id="userDropdown" class="form-control"></select>
-                </div>
-
-                <div class="input-group mb-3">
-                    <label for="groupDropdown" class="input-group-text">Select Group:</label>
-                    <select id="groupDropdown" class="form-control"></select>
-                </div>
-
-                <div class="input-group mb-3">
-                    <button class="btn btn-primary me-2" type="button" onclick="addToGroup();">Add to Group</button>
-                    <button class="btn btn-danger" type="button" onclick="removeFromGroup();">Remove from Group</button>
-                </div>
+<div class="container p-4" style="margin-top: 10px;">
+    <form>
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <input id="username" type="text" class="form-control" placeholder="username"
+                       aria-label="Insert a name"
+                       aria-describedby="button-addon2"
+                >
+                <button id="conBtn" class="btn btn-outline-secondary" type="button"
+                        onclick="connectionCall();"
+                        value="Connect">Connect
+                </button>
             </div>
         </div>
 
-        <div class="col-md-8">
-            <form>
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <input id="username" type="text" class="form-control" placeholder="username"
-                               aria-label="Insert a name"
-                               aria-describedby="button-addon2"
-                        >
-                        <button id="conBtn" class="btn btn-outline-secondary" type="button"
-                                onclick="connectionCall();"
-                                value="Connect">Connect
-                        </button>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="log">Chat</label>
-                    <textarea id="log" class="form-control" style="min-height: 350px;"
-                              readonly="true"
-                    ></textarea>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group mb-3">
-                        <input id="msg" type="text"
-                               class="form-control"
-                               placeholder="Send a message"
-                               aria-label="Insert a message"
-                               aria-describedby="button-addon2">
-                        <select id="userDropdownToSendTo" class="form-control">
-                            <option>none</option>
-                        </select>
-                        <button class="btn btn-primary" type="button" onclick="sendToUser();">Send To User
-                        </button>
-                        <select id="groupDropdownToSendTo" class="form-control">
-                            <option>none</option>
-                        </select>
-                        <button class="btn btn-primary" type="button" onclick="sendToGroup();">Send To Group
-                        </button>
-                    </div>
-                </div>
-
-
-            </form>
+        <div class="form-group">
+            <label for="log">Chat</label>
+            <textarea id="log" class="form-control" style="min-height: 350px;"
+                      readonly="true"
+            ></textarea>
         </div>
 
+        <div class="form-group">
+            <div class="input-group mb-3">
+                <label for="msg" class="sr-only">Message:</label>
+                <input id="msg" type="text"
+                       class="form-control"
+                       placeholder="Send a message"
+                       aria-label="Insert a message"
+                       aria-describedby="button-addon2">
+                <select id="userDropdownToSendTo" class="form-control">
+                    <option>none</option>
+                </select>
+                <button class="btn btn-primary" type="button" onclick="sendToUser();">Send To User
+                </button>
+                <select id="groupDropdownToSendTo" class="form-control">
+                    <option>none</option>
+                </select>
+                <button class="btn btn-primary" type="button" onclick="sendToGroup();">Send To Group
+                </button>
+            </div>
+        </div>
+    </form>
 
+    <!-- Add new group -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add new group</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Create a new group</p>
+                    <div class="input-group mb-3">
+                        <input id="groupName" type="text" class="form-control" placeholder="Group Name"
+                               aria-label="Enter group name"
+                               aria-describedby="button-addon2">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary" type="button" onclick="createGroup();">Add new group
+                    </button>
+                </div>
+            </div>
+        </div>
     </div>
 
+    <!-- Group Actions -->
+    <div class="modal fade" id="groupModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="groupModalLabel">Group Actions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Add/Delete to/from group</p>
+                    <div class="input-group mb-3">
+                        <div class="input-group mb-3">
+                            <label for="userDropdown" class="input-group-text">Select User:</label>
+                            <select id="userDropdown" class="form-control"></select>
+                        </div>
+
+                        <div class="input-group mb-3">
+                            <label for="groupDropdown" class="input-group-text">Select Group:</label>
+                            <select id="groupDropdown" class="form-control"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button class="btn btn-primary me-2" type="button" onclick="addToGroup();">Add to Group
+                    </button>
+                    <button class="btn btn-danger" type="button" onclick="removeFromGroup();">Remove from
+                        Group
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
 </div>
 </body>
 <script src="websockets.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+
+<!-- Popper.js (required for Bootstrap JavaScript plugins) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+
+<!-- Bootstrap JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 </html>
