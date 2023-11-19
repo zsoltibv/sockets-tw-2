@@ -221,7 +221,6 @@ public class ChatEndpoint {
         if (firstGroup.isPresent() && firstUser.isPresent()) {
             firstGroup.get().getUsers().add(firstUser.get());
         }
-
     }
 
     @OnClose

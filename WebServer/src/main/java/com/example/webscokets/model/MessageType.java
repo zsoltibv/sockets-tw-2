@@ -28,7 +28,6 @@ public enum MessageType {
     @SerializedName("undefined")
     UNDEFINED("undefined");
 
-
     private String text;
 
     MessageType(String text) {

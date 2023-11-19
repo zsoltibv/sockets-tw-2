@@ -189,25 +189,3 @@ function removeFromGroup() {
 
     ws.send(json);
 }
-
-function toggleSidebar() {
-    document.body.classList.toggle('sidebar-open');
-}
-
-function getAllUsers() {
-    let json = JSON.stringify({
-        "from": username,
-        "type": "view_all_users"
-    });
-
-    ws.send(json);
-}
-
-function getAllGroups() {
-    let json = JSON.stringify({
-        "from": username,
-        "type": "view_all_groups"
-    });
-
-    ws.send(json);
-}
