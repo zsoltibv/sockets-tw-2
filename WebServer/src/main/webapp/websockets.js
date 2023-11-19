@@ -39,11 +39,6 @@ function connect() {
                 console.log("Unknown message type: " + message.type);
         }
     }
-
-    ws.onopen = function(event) {
-        getAllUsers();
-        getAllGroups();
-    };
 }
 
 
@@ -169,7 +164,7 @@ function bindGroupsToDropdown(groups) {
     });
 }
 
-function addToGroup(){
+function addToGroup() {
     let selectedUser = document.getElementById("userDropdown").value;
     let selectedGroup = document.getElementById("groupDropdown").value;
 
@@ -182,7 +177,7 @@ function addToGroup(){
     ws.send(json);
 }
 
-function removeFromGroup(){
+function removeFromGroup() {
     let selectedUser = document.getElementById("userDropdown").value;
     let selectedGroup = document.getElementById("groupDropdown").value;
 
@@ -193,4 +188,8 @@ function removeFromGroup(){
     });
 
     ws.send(json);
+}
+
+function toggleSidebar() {
+    document.body.classList.toggle('sidebar-open');
 }
